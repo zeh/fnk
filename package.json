@@ -1,0 +1,30 @@
+{
+  "name": "fnk",
+  "version": "0.1.0",
+  "description": "A dataflow-driven, visual, always-running, functional programming language",
+  "main": "FNK.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"build": "tsc",
+	"watch": "tsc -w",
+	"release": "echo \"Error: no release specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeh/fnk.git"
+  },
+  "keywords": [
+    "dataflow"
+  ],
+  "author": "Zeh Fernando",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zeh/fnk/issues"
+  },
+  "homepage": "https://github.com/zeh/fnk#readme"
+}
