@@ -1,16 +1,20 @@
 {
 	"compilerOptions": {
 		"target": "es5",
-		"module": "amd",
+		"module": "commonjs",
 		"declaration": false,
 		"noImplicitAny": true,
 		"removeComments": true,
 		"preserveConstEnums": true,
 		"sourceMap": true,
-		"outFile": "./build/fnk.js",
+		"outDir": "./build",
 		"newLine": "LF"
 	},
 	"files": [
 		"./src/index.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"build"
 	]
 }
