@@ -40,7 +40,7 @@ export default class Link {
 		if (!this.isDelayed) {
 			this.doOutput();
 		} else {
-			//FNK.warn("Is Delayed! Needs output = "+this.needsOutputting);
+			//console.warn("Is Delayed! Needs output = "+this.needsOutputting);
 			// This is not needed?? Because the patch does it itself...
 			//if (this.needsOutputting) this.doOutput();
 			// TODO: SPECIAL CASE for bitmaps - fix this?
@@ -66,12 +66,20 @@ export default class Link {
 				previousValue = inputNode.getOutputValue(this.inputConnectorId);
 			}
 			*/
-			/*
 			//this.previousValue = this.inputNode.getOutputValue(this.inputConnectorId);
 			this.needsOutputting = true;
 			// TODO: deep copy instead? 
-			*/
 		}
+	}
+
+
+	public doOutput() {
+		let vValue = this.inputNode.getOutputConnectors().getConnector(this.inputConnectorId).getValue();
+		let vDataType = this.inputNode.getOutputConnectors().getConnector(this.inputConnectorId).dataType;
+
+		this.needsOutputting = false;
+		//console.log("==> Getting for connector of id " + this.outputConnectorId);
+		this.outputNode.getInputConnectors().getConnector(this.outputConnectorId).setValue(vValue, vDataType);
 	}
 
 	public dispose() {
@@ -88,17 +96,5 @@ export default class Link {
 		*/
 	}
 
-
-	// ================================================================================================================
-	// PRIVATE INTERFACE ----------------------------------------------------------------------------------------------
-
-	public doOutput() {
-		//let vValue = this.inputNode.getOutputConnector(this.inputConnectorId).getValue();
-		//let vDataType = this.inputNode.getOutputConnector(this.inputConnectorId).dataType;
-
-		//this.needsOutputting = false;
-		//this.outputNode.getInputConnector(this.outputConnectorId).setValue(vValue, vDataType);
-	}
-	
 }
 

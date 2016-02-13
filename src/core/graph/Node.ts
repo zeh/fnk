@@ -40,7 +40,7 @@ export default class Node {
 		this.populateParameters();
 		this.createConnectors();
 		this.populateConnectors();
-		//this.createSignals();
+		this.createSignals();
 	}
 
 

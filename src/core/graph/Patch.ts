@@ -81,7 +81,7 @@ export default class Patch {
 				if (this.links[j].outputNode == tNode && this.nodes.indexOf(this.links[j].inputNode) > i) {
 					if (this.links[j].isDelayed) {
 						if (this.links[j].needsOutputting) {
-							console.log("Processing delayed link");
+							console.log("    Processing delayed link");
 							this.links[j].doOutput();
 						}
 					} else {
@@ -94,10 +94,11 @@ export default class Patch {
 			if (canProcess) {
 				// Can process, do it and continue					
 				// Process all related links first
+				//console.log("    Can process");
 				// TODO - only process nodes that need processing? Because the events have been removed from the actionscript version, it's brute-forcing all updates
 				for (j = 0; j < this.links.length; j++) {
 					if (this.links[j].outputNode == tNode) {
-						//FNK.log("      Processing input link " + i);
+						//console.log("      Processing input link " + j);
 						this.links[j].process();
 					}
 				}

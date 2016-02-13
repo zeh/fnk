@@ -1,9 +1,6 @@
 import Node from './../../core/graph/Node'
 import DataType from './../../core/data/DataType';
-import Patch from './../../core/graph/Patch';
-import ConnectorList from './../../core/graph/connectors/ConnectorList';
 import Connector from './../../core/graph/connectors/Connector';
-import SimpleSignal from './../../core/signals/SimpleSignal';
 
 /**
  * @author zeh fernando
