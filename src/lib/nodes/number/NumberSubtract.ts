@@ -1,5 +1,6 @@
 import OperationNode from './../OperationNode'
 import DataType from './../../../core/data/DataType';
+import CategoryTypes from './../../../core/data/CategoryTypes';
 
 /**
  * @author zeh fernando
@@ -21,8 +22,8 @@ export default class NumberSubtract extends OperationNode {
 		// Extend
 		super.setInitialData();
 		this.description = ["-"];
-		// TODO: Set: category type
 		this.dataType = DataType.NUMBER;
+		this.categoryType = CategoryTypes.Number;
 	}
 	
 	protected getProcessedInputs(position:number):any {

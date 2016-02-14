@@ -1,6 +1,7 @@
 import Patch from './Patch';
 import ConnectorList from './connectors/ConnectorList';
 import SimpleSignal from './../signals/SimpleSignal';
+import CategoryTypes from './../data/CategoryTypes';
 
 /**
  * @author zeh fernando
@@ -14,8 +15,7 @@ export default class Node {
 
 	// Pseudo-static constants
 	public description:string[] = []; // A description of the node. Same as the name of the node. Example: "+", "IO"
-	public categoryType:string = "*category*";
-	//public categoryType = FNK.CategoryType.OTHER;
+	public categoryType:CategoryTypes;
 	//		protected var HelpXML:Class;
 
 	// Properties
@@ -94,6 +94,7 @@ export default class Node {
 	
 	protected setInitialData() {
 		// Extend
+		this.categoryType = CategoryTypes.Other;
 	}
 	
 	protected createParameters() {
