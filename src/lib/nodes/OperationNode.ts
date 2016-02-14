@@ -1,5 +1,4 @@
 import MultipleInputNode from './MultipleInputNode'
-import DataType from './../../core/data/DataType';
 import Node from './../../core/graph/Node'
 import Connector from './../../core/graph/connectors/Connector';
 

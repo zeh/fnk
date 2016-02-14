@@ -1,5 +1,5 @@
 import Node from './../../core/graph/Node'
-import DataType from './../../core/data/DataType';
+import DataTypes from './../../core/data/DataTypes';
 import Connector from './../../core/graph/connectors/Connector';
 
 /**
@@ -11,7 +11,7 @@ export default class MultipleInputNode extends Node {
 	protected numInputs:number;
 	protected numInputsMin:number;
 	protected numInputsMax:number;
-	protected dataType:string;
+	protected dataType:DataTypes;
 	protected anyDataType:boolean;
 
 
@@ -32,7 +32,7 @@ export default class MultipleInputNode extends Node {
 		this.numInputs = 2;
 		this.numInputsMin = 2;
 		this.numInputsMax = 10;
-		this.dataType = DataType.NULL;
+		this.dataType = DataTypes.None;
 		this.anyDataType = false;
 	}
 	

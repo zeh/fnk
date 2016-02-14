@@ -1,5 +1,5 @@
 import Node from './../../core/graph/Node'
-import DataType from './../../core/data/DataType';
+import DataTypes from './../../core/data/DataTypes';
 import Connector from './../../core/graph/connectors/Connector';
 
 /**
@@ -8,7 +8,7 @@ import Connector from './../../core/graph/connectors/Connector';
 export default class IONode extends Node {
 	
 	// Properties
-	protected dataType:string;
+	protected dataType:DataTypes;
 
 
 	// ================================================================================================================
@@ -25,7 +25,7 @@ export default class IONode extends Node {
 	protected setInitialData() {
 		// Extend
 		super.setInitialData();
-		this.dataType = DataType.NULL;
+		this.dataType = DataTypes.None;
 	}
 	
 	protected createParameters() {

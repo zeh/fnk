@@ -1,5 +1,5 @@
 import IONode from './../IONode'
-import DataType from './../../../core/data/DataType';
+import DataTypes from './../../../core/data/DataTypes';
 import CategoryTypes from './../../../core/data/CategoryTypes';
 
 /**
@@ -22,7 +22,7 @@ export default class NumberIONode extends IONode {
 		// Extend
 		super.setInitialData();
 		this.captions = ["IO"];
-		this.dataType = DataType.NUMBER;
+		this.dataType = DataTypes.Number;
 		this.categoryType = CategoryTypes.Number;
 	}
 }

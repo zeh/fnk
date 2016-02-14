@@ -1,4 +1,4 @@
-import DataType from "./../../data/DataType";
+import DataTypes from "./../../data/DataTypes";
 
 /**
  * @author zeh fernando
@@ -6,7 +6,7 @@ import DataType from "./../../data/DataType";
 export default class Connector {
 
 	// Properties
-	public dataType:string;
+	public dataType:DataTypes;
 	public anyDataType:boolean;
 	public description:string;
 	public id:string;
@@ -19,7 +19,7 @@ export default class Connector {
 	// ================================================================================================================
 	// CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 
-	constructor(dataType:string, description:string, id:string, allowsArray:boolean = true, allowsMultipleOutputs:boolean = false, allowAnyDataType:boolean = false) {
+	constructor(dataType:DataTypes, description:string, id:string, allowsArray:boolean = true, allowsMultipleOutputs:boolean = false, allowAnyDataType:boolean = false) {
 		// TODO:localization: default connector description
 		this.dataType = dataType;
 		this.anyDataType = allowAnyDataType;
@@ -27,7 +27,7 @@ export default class Connector {
 		this.id = id;
 		this.allowsArray = allowsArray;
 		this.allowsMultipleOutputs = allowsMultipleOutputs;
-		this.value = [DataType.getDefaultValue(this.dataType)];
+		this.value = [this.dataType.getDefaultValue()];
 		this.hasChanged = true;
 	}
 
@@ -40,20 +40,20 @@ export default class Connector {
 		this.hasChanged = false;
 	}
 
-	public setValue(value:any[], fromType:string) {
+	public setValue(value:any[], fromType:DataTypes) {
 		// Set the value of this connector to a new array of a specific type
 		if (this.anyDataType) {
 			this.value = value.slice(0); // Duplicated array
 			this.dataType = fromType;
 		} else {
-			this.value = DataType.convertDataArray(value, fromType, this.dataType);
+			this.value = DataTypes.convertDataArray(value, fromType, this.dataType);
 		}
 		this.hasChanged = true;
 	}
 
-	public setValueAt(position:number, value:any, fromType:string) {
+	public setValueAt(position:number, value:any, fromType:DataTypes) {
 		// Set the value at a particular position
-		this.value[position] = DataType.convertData(value, fromType, this.dataType);
+		this.value[position] = DataTypes.convertData(value, fromType, this.dataType);
 		this.hasChanged = true;
 	}
 

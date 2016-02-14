@@ -1,5 +1,5 @@
 import OperationNode from './../OperationNode'
-import DataType from './../../../core/data/DataType';
+import DataTypes from './../../../core/data/DataTypes';
 import CategoryTypes from './../../../core/data/CategoryTypes';
 
 /**
@@ -22,7 +22,7 @@ export default class NumberAdd extends OperationNode {
 		// Extend
 		super.setInitialData();
 		this.captions = ["+"];
-		this.dataType = DataType.NUMBER;
+		this.dataType = DataTypes.Number;
 		this.categoryType = CategoryTypes.Number;
 	}
 	

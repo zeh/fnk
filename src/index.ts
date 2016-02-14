@@ -6,7 +6,7 @@ import FNK from './FNK'
 import Patch from './core/graph/Patch';
 import Link from './core/graph/Link';
 import Node from './core/graph/Node';
-import DataType from './core/data/DataType';
+import DataTypes from './core/data/DataTypes';
 
 import NumberIONode from './lib/nodes/number/NumberIONode';
 import NumberSubtract from './lib/nodes/number/NumberSubtract';
@@ -14,6 +14,18 @@ import NumberAdd from './lib/nodes/number/NumberAdd';
 
 console.log("FNK started; time is " + FNK.getTimer() + " (started at " + FNK.TIME_STARTED + ")");
 
+/*
+
+Expected:
+
+let dataType:DataTypes = DataTypes.Number;
+
+dataType.getDefaultValue();
+
+//?
+let a:number = DataTypes.convert<DataTypes.Number, DataTypes.String>(a);
+
+*/
 
 // Tentative low-level API for the code version of the language
 
@@ -54,11 +66,11 @@ let patch = new Patch();
 
 // Main nodes
 let nodea = new NumberIONode();
-nodea.getInputConnectors().getAt(0).setValue([2], DataType.NUMBER);
+nodea.getInputConnectors().getAt(0).setValue([2], DataTypes.Number);
 patch.addNode(nodea);
 
 let nodeb = new NumberIONode();
-nodeb.getInputConnectors().getAt(0).setValue([1], DataType.NUMBER);
+nodeb.getInputConnectors().getAt(0).setValue([1], DataTypes.Number);
 patch.addNode(nodeb);
 
 // Operation
@@ -89,7 +101,7 @@ patch.addLink(linkresult);
 
 // Addition
 let nodec = new NumberIONode();
-nodec.getInputConnectors().getAt(0).setValue([1], DataType.NUMBER);
+nodec.getInputConnectors().getAt(0).setValue([1], DataTypes.Number);
 patch.addNode(nodec);
 
 let snode = new NumberAdd();
