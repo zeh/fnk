@@ -21,7 +21,7 @@ export default class NumberIONode extends IONode {
 	protected setInitialData() {
 		// Extend
 		super.setInitialData();
-		this.description = ["IO"];
+		this.captions = ["IO"];
 		this.dataType = DataType.NUMBER;
 		this.categoryType = CategoryTypes.Number;
 	}

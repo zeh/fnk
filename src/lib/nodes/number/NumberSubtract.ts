@@ -21,7 +21,7 @@ export default class NumberSubtract extends OperationNode {
 	protected setInitialData() {
 		// Extend
 		super.setInitialData();
-		this.description = ["-"];
+		this.captions = ["-"];
 		this.dataType = DataType.NUMBER;
 		this.categoryType = CategoryTypes.Number;
 	}

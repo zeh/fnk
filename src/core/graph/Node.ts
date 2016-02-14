@@ -14,7 +14,7 @@ export default class Node {
 	public static CONNECTOR_ID_SEPARATOR = "-";
 
 	// Pseudo-static constants
-	public description:string[] = []; // A description of the node. Same as the name of the node. Example: "+", "IO"
+	public captions:string[];						// A visible description of the node. Same as the name of the node. Example: "+", "IO"
 	public categoryType:CategoryTypes;
 	//		protected var HelpXML:Class;
 
@@ -71,13 +71,12 @@ export default class Node {
 	}
 
 	public toString():string {
-		//return "[" + getQualifiedClassName(this) + "]";
-		return "[" + this.description + " (" + this.categoryType + ")]";
+		return "[" + this.captions + " (" + this.categoryType + ")]";
 	}
 
 	public getContentDescription():any[] {
 		// Returns a description of the content it holds (used for the visual node) - normally, an array
-		return this.description;
+		return this.captions;
 	}
 
 	public dispose() {
@@ -94,6 +93,7 @@ export default class Node {
 	
 	protected setInitialData() {
 		// Extend
+		this.captions = [];
 		this.categoryType = CategoryTypes.Other;
 	}
 	
@@ -125,7 +125,7 @@ export default class Node {
 
 	protected setDescription(description:string[]) {
 		// Set the description (must be an array)
-		this.description = description;
+		this.captions = description;
 		this.changeContentDescriptionSignal.dispatch();
 	}
 
