@@ -44,8 +44,8 @@ export default class IONode extends Node {
 		super.populateConnectors();
 		
 		// Actually populate the connector list with the expected connectors
-		this.inputConnectors.addConnector(new Connector(this.dataType, "Input", Node.CONNECTOR_ID_INPUT));
-		this.outputConnectors.addConnector(new Connector(this.dataType, "Output", Node.CONNECTOR_ID_OUTPUT, true, true));
+		this.inputConnectors.add(new Connector(this.dataType, "Input", Node.CONNECTOR_ID_INPUT));
+		this.outputConnectors.add(new Connector(this.dataType, "Output", Node.CONNECTOR_ID_OUTPUT, true, true));
 	}
 
 	protected innerProcess() {
@@ -53,10 +53,10 @@ export default class IONode extends Node {
 
 		// Process the node, using the input and creating the output
 		// TODO: setting the value like this is wrong
-		this.outputConnectors.getConnector(Node.CONNECTOR_ID_OUTPUT).setValue(this.inputConnectors.getConnector(Node.CONNECTOR_ID_INPUT).getValue(), this.dataType);
+		this.outputConnectors.get(Node.CONNECTOR_ID_OUTPUT).setValue(this.inputConnectors.get(Node.CONNECTOR_ID_INPUT).getValue(), this.dataType);
 
 		// Update display description
-		this.setDescription(this.inputConnectors.getConnector(Node.CONNECTOR_ID_INPUT).getValue());
+		this.setDescription(this.inputConnectors.get(Node.CONNECTOR_ID_INPUT).getValue());
 
 	}
 }

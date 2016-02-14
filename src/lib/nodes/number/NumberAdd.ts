@@ -27,9 +27,9 @@ export default class NumberAdd extends OperationNode {
 	}
 	
 	protected getProcessedInputs(position:number):any {
-		let total = Number(this.inputConnectors.getConnectorAt(0).getValueAt(position));
-		for (let i = 1; i < this.inputConnectors.getNumConnectors(); i++) {
-			total += Number(this.inputConnectors.getConnectorAt(i).getValueAt(position));
+		let total = Number(this.inputConnectors.getAt(0).getValueAt(position));
+		for (let i = 1; i < this.inputConnectors.length; i++) {
+			total += Number(this.inputConnectors.getAt(i).getValueAt(position));
 		}
 		return total;
 	}

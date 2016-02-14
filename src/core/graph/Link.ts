@@ -74,12 +74,12 @@ export default class Link {
 
 
 	public doOutput() {
-		let vValue = this.inputNode.getOutputConnectors().getConnector(this.inputConnectorId).getValue();
-		let vDataType = this.inputNode.getOutputConnectors().getConnector(this.inputConnectorId).dataType;
+		let vValue = this.inputNode.getOutputConnectors().get(this.inputConnectorId).getValue();
+		let vDataType = this.inputNode.getOutputConnectors().get(this.inputConnectorId).dataType;
 
 		this.needsOutputting = false;
 		//console.log("==> Getting for connector of id " + this.outputConnectorId);
-		this.outputNode.getInputConnectors().getConnector(this.outputConnectorId).setValue(vValue, vDataType);
+		this.outputNode.getInputConnectors().get(this.outputConnectorId).setValue(vValue, vDataType);
 	}
 
 	public dispose() {

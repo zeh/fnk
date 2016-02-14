@@ -20,54 +20,40 @@ export default class ConnectorList {
 	// ================================================================================================================
 	// PUBLIC INTERFACE -----------------------------------------------------------------------------------------------
 	
-	public addConnector(connector:Connector, value:any[] = null) {
-		this.addConnectorAt(this.ids.length, connector, value);
+	public add(connector:Connector, value:any[] = null) {
+		this.addAt(this.ids.length, connector, value);
 	}
 
-	public addConnectorAt(position:number, connector:Connector, value:any[]) {
+	public addAt(position:number, connector:Connector, value:any[]) {
 		this.ids.splice(position, 0, connector.id);
 		if (Boolean(value)) {
 			connector.setValue(value, connector.dataType);
 		}
 		this.connectors[connector.id] = connector;
 	}
-	
-	public addConnectorAfter(id:string, connector:Connector, value:any[]) {
-		let i = this.getConnectorPosition(id);
-		if (i < 0) i = this.ids.length-1;
-		this.addConnectorAt(i + 1, connector, value);
-	}
 
-	public getConnector(id:string):Connector {
+	public get(id:string):Connector {
 		return this.connectors[id];
 	}
 
-	public getConnectorAt(position:number) {
+	public getAt(position:number) {
 		return this.connectors[this.ids[position]];
 	}
 	
-	public getConnectorIdAt(position:number):string {
+	public getIdAt(position:number):string {
 		return this.ids[position];
 	}
 
-	public getConnectorPosition(id:string):number {
+	public getPosition(id:string):number {
 		return this.ids.indexOf(id);
 	}
 
-	public getConnectorId(position:number):string {
-		return this.ids[position];
+	public remove(id:string) {
+		let i = this.getPosition(id);
+		if (i > -1) this.removeAt(i);
 	}
 
-	public getNumConnectors():number {
-		return this.ids.length;
-	}
-
-	public removeConnector(id:string) {
-		let i = this.getConnectorPosition(id);
-		if (i > -1) this.removeConnectorAt(i);
-	}
-
-	public removeConnectorAt(position:number) {
+	public removeAt(position:number) {
 		var id = this.ids[position];
 		this.ids.splice(position, 1);
 		delete this.connectors[id];
@@ -85,4 +71,13 @@ export default class ConnectorList {
 			this.connectors[id].resetChangeFlag();
 		}
 	}
+
+
+	// ================================================================================================================
+	// ACCESSOR INTERFACE ---------------------------------------------------------------------------------------------
+
+	public get length():number {
+		return this.ids.length;
+	}
+
 }

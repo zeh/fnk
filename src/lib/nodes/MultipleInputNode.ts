@@ -59,10 +59,10 @@ export default class MultipleInputNode extends Node {
 
 		// Process the node, using the input and creating the output
 		// TODO: setting the value like this is wrong
-		this.outputConnectors.getConnector(Node.CONNECTOR_ID_OUTPUT).setValue(this.inputConnectors.getConnector(Node.CONNECTOR_ID_INPUT).getValue(), this.dataType);
+		this.outputConnectors.get(Node.CONNECTOR_ID_OUTPUT).setValue(this.inputConnectors.get(Node.CONNECTOR_ID_INPUT).getValue(), this.dataType);
 
 		// Update display description
-		this.setDescription(this.inputConnectors.getConnector(Node.CONNECTOR_ID_INPUT).getValue());
+		this.setDescription(this.inputConnectors.get(Node.CONNECTOR_ID_INPUT).getValue());
 
 	}
 	
@@ -72,17 +72,17 @@ export default class MultipleInputNode extends Node {
 	private createInputConnectors() {
 		//console.log("@@@@@@@@@@@@@@ Creating input connectors [" + this.description + "]; has " + this.inputConnectors.getNumConnectors() + ", need " + this.numInputs);
 		let i:number;
-		if (this.inputConnectors.getNumConnectors() > this.numInputs) {
+		if (this.inputConnectors.length > this.numInputs) {
 			// Delete input connectors as needed
-			for (i = 0; i < this.inputConnectors.getNumConnectors() - this.numInputs; i++) {
-				this.inputConnectors.removeConnectorAt(this.inputConnectors.getNumConnectors() - 1);
+			for (i = 0; i < this.inputConnectors.length - this.numInputs; i++) {
+				this.inputConnectors.removeAt(this.inputConnectors.length - 1);
 			}
 			// TODO: test if slice is correctly done
-		} else if (this.inputConnectors.getNumConnectors() < this.numInputs) {
+		} else if (this.inputConnectors.length < this.numInputs) {
 			// Create input connectors as needed
-			for (i = this.inputConnectors.getNumConnectors(); i < this.numInputs; i++) {
+			for (i = this.inputConnectors.length; i < this.numInputs; i++) {
 				//console.log("@@@@@@@@@@@@@@ Creating input of id " + (Node.CONNECTOR_ID_INPUT + Node.CONNECTOR_ID_SEPARATOR + i));
-				this.inputConnectors.addConnector(new Connector(this.dataType, "Input " + (i+1), Node.CONNECTOR_ID_INPUT + Node.CONNECTOR_ID_SEPARATOR + i, true, false, this.anyDataType));
+				this.inputConnectors.add(new Connector(this.dataType, "Input " + (i+1), Node.CONNECTOR_ID_INPUT + Node.CONNECTOR_ID_SEPARATOR + i, true, false, this.anyDataType));
 				// TODO: connector name must come from localized string
 			}
 		}

@@ -54,11 +54,11 @@ let patch = new Patch();
 
 // Main nodes
 let nodea = new NumberIONode();
-nodea.getInputConnectors().getConnectorAt(0).setValue([2], DataType.NUMBER);
+nodea.getInputConnectors().getAt(0).setValue([2], DataType.NUMBER);
 patch.addNode(nodea);
 
 let nodeb = new NumberIONode();
-nodeb.getInputConnectors().getConnectorAt(0).setValue([1], DataType.NUMBER);
+nodeb.getInputConnectors().getAt(0).setValue([1], DataType.NUMBER);
 patch.addNode(nodeb);
 
 // Operation
@@ -71,25 +71,25 @@ patch.addNode(resultnode);
 
 // Links: before operation
 let linka = new Link();
-linka.setInputNode(nodea, nodea.getOutputConnectors().getConnectorIdAt(0));
-linka.setOutputNode(pnode, pnode.getInputConnectors().getConnectorIdAt(0));
+linka.setInputNode(nodea, nodea.getOutputConnectors().getIdAt(0));
+linka.setOutputNode(pnode, pnode.getInputConnectors().getIdAt(0));
 patch.addLink(linka);
 
 let linkb = new Link();
-linkb.setInputNode(nodeb, nodeb.getOutputConnectors().getConnectorIdAt(0));
-linkb.setOutputNode(pnode, pnode.getInputConnectors().getConnectorIdAt(1));
+linkb.setInputNode(nodeb, nodeb.getOutputConnectors().getIdAt(0));
+linkb.setOutputNode(pnode, pnode.getInputConnectors().getIdAt(1));
 patch.addLink(linkb);
 
 // Links: after operation
 
 let linkresult = new Link();
-linkresult.setInputNode(pnode, pnode.getOutputConnectors().getConnectorIdAt(0));
-linkresult.setOutputNode(resultnode, resultnode.getInputConnectors().getConnectorIdAt(0));
+linkresult.setInputNode(pnode, pnode.getOutputConnectors().getIdAt(0));
+linkresult.setOutputNode(resultnode, resultnode.getInputConnectors().getIdAt(0));
 patch.addLink(linkresult);
 
 // Addition
 let nodec = new NumberIONode();
-nodec.getInputConnectors().getConnectorAt(0).setValue([1], DataType.NUMBER);
+nodec.getInputConnectors().getAt(0).setValue([1], DataType.NUMBER);
 patch.addNode(nodec);
 
 let snode = new NumberAdd();
@@ -99,24 +99,24 @@ let noded = new NumberIONode();
 patch.addNode(noded);
 
 let linkc = new Link();
-linkc.setInputNode(resultnode, resultnode.getOutputConnectors().getConnectorIdAt(0));
-linkc.setOutputNode(snode, snode.getInputConnectors().getConnectorIdAt(0));
+linkc.setInputNode(resultnode, resultnode.getOutputConnectors().getIdAt(0));
+linkc.setOutputNode(snode, snode.getInputConnectors().getIdAt(0));
 patch.addLink(linkc);
 
 let linkd = new Link();
-linkd.setInputNode(nodec, nodec.getOutputConnectors().getConnectorIdAt(0));
-linkd.setOutputNode(snode, snode.getInputConnectors().getConnectorIdAt(1));
+linkd.setInputNode(nodec, nodec.getOutputConnectors().getIdAt(0));
+linkd.setOutputNode(snode, snode.getInputConnectors().getIdAt(1));
 patch.addLink(linkd);
 
 let linke = new Link();
-linke.setInputNode(snode, snode.getOutputConnectors().getConnectorIdAt(0));
-linke.setOutputNode(noded, noded.getInputConnectors().getConnectorIdAt(0));
+linke.setInputNode(snode, snode.getOutputConnectors().getIdAt(0));
+linke.setOutputNode(noded, noded.getInputConnectors().getIdAt(0));
 patch.addLink(linke);
 
 let linkloop = new Link();
 linkloop.isDelayed = true;
-linkloop.setInputNode(noded, noded.getOutputConnectors().getConnectorIdAt(0));
-linkloop.setOutputNode(nodec, nodec.getInputConnectors().getConnectorIdAt(0));
+linkloop.setInputNode(noded, noded.getOutputConnectors().getIdAt(0));
+linkloop.setOutputNode(nodec, nodec.getInputConnectors().getIdAt(0));
 patch.addLink(linkloop);
 
 function processAndReport() {
@@ -137,27 +137,27 @@ function processAndReport() {
 	*/
 	
 	console.log(".-----.      .-----.                                                                    ");
-	console.log("|  "+nodea.getOutputConnectors().getConnectorAt(0).getValue()+"  |      |  "+nodeb.getOutputConnectors().getConnectorAt(0).getValue()+"  |  (NumberIONodes)                                                   ");
+	console.log("|  "+nodea.getOutputConnectors().getAt(0).getValue()+"  |      |  "+nodeb.getOutputConnectors().getAt(0).getValue()+"  |  (NumberIONodes)                                                   ");
 	console.log("'--.--'      '--.--'                                                                    ");
 	console.log("   |            |                                                                       ");
 	console.log("   '-----. .----'                                                                       ");
 	console.log("       .-'-'-.                                                                          ");
 	console.log("       |  -  | (NumberSubtract)                                                         ");
 	console.log("       '--.--'                                                                          ");
-	console.log("          | "+pnode.getOutputConnectors().getConnectorAt(0).getValue()+"                                                                             ");
+	console.log("          | "+pnode.getOutputConnectors().getAt(0).getValue()+"                                                                             ");
 	console.log("          |            .------------------------.                                       ");
 	console.log("       .--'--.      .--'--.                     |                                       ");
-	console.log("       |  "+resultnode.getOutputConnectors().getConnectorAt(0).getValue()+"  |      |  "+nodec.getOutputConnectors().getConnectorAt(0).getValue()+"  | (NumberIONodes)     |                                       ");
+	console.log("       |  "+resultnode.getOutputConnectors().getAt(0).getValue()+"  |      |  "+nodec.getOutputConnectors().getAt(0).getValue()+"  | (NumberIONodes)     |                                       ");
 	console.log("       '--.--'      '--.--'                     | --> This link is delayed              ");
 	console.log("          |            |                        |                                       ");
 	console.log("          '-----. .----'                        |                                       ");
 	console.log("              .-'-'-.                           |                                       ");
 	console.log("              |  +  | (NumberAdd)               |                                       ");
 	console.log("              '--.--'                           |                                       ");
-	console.log("                 | "+snode.getOutputConnectors().getConnectorAt(0).getValue()+"                            |                                       ");
+	console.log("                 | "+snode.getOutputConnectors().getAt(0).getValue()+"                            |                                       ");
 	console.log("                 |                              |                                       ");
 	console.log("              .--'--.                           |                                       ");
-	console.log("              |  "+noded.getOutputConnectors().getConnectorAt(0).getValue()+"  | (NumberIONode)            |                                       ");
+	console.log("              |  "+noded.getOutputConnectors().getAt(0).getValue()+"  | (NumberIONode)            |                                       ");
 	console.log("              '-----'                           |                                       ");
 	console.log("                 |                              |                                       ");
 	console.log("                 '------------------------------'                                       ");
