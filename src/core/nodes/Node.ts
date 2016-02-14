@@ -1,5 +1,5 @@
-import Patch from './Patch';
-import ConnectorList from './connectors/ConnectorList';
+import Patch from './../patch/Patch';
+import ConnectorList from './../connectors/ConnectorList';
 import SimpleSignal from './../signals/SimpleSignal';
 import CategoryTypes from './../data/CategoryTypes';
 

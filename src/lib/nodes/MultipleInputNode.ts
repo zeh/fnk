@@ -1,6 +1,6 @@
-import Node from './../../core/graph/Node'
+import Node from './../../core/nodes/Node'
 import DataTypes from './../../core/data/DataTypes';
-import Connector from './../../core/graph/connectors/Connector';
+import Connector from './../../core/connectors/Connector';
 
 /**
  * @author zeh fernando

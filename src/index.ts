@@ -3,9 +3,9 @@
  */
 
 import FNK from './FNK'
-import Patch from './core/graph/Patch';
-import Link from './core/graph/Link';
-import Node from './core/graph/Node';
+import Patch from './core/patch/Patch';
+import Link from './core/links/Link';
+import Node from './core/nodes/Node';
 import DataTypes from './core/data/DataTypes';
 
 import NumberIONode from './lib/nodes/number/NumberIONode';

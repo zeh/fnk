@@ -1,6 +1,6 @@
 import FNK from './../../FNK';
-import Node from './Node';
-import Link from './Link';
+import Node from './../nodes/Node';
+import Link from './../links/Link';
 
 /**
  * @author zeh fernando

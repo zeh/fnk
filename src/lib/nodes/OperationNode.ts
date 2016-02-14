@@ -1,6 +1,6 @@
 import MultipleInputNode from './MultipleInputNode'
-import Node from './../../core/graph/Node'
-import Connector from './../../core/graph/connectors/Connector';
+import Node from './../../core/nodes/Node'
+import Connector from './../../core/connectors/Connector';
 
 /**
  * @author zeh fernando

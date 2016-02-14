@@ -1,4 +1,4 @@
-import DataTypes from "./../../data/DataTypes";
+import DataTypes from "./../data/DataTypes";
 
 /**
  * @author zeh fernando
