@@ -1,6 +1,7 @@
 /**
  * @author zeh fernando
  */
+import "babel-polyfill";
 
 import FNK from './FNK'
 import Patch from './core/patch/Patch';
