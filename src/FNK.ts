@@ -1,9 +1,14 @@
 export default class FNK {
-	static TIME_STARTED:number = (new Date()).valueOf();
+	static TIME_STARTED:number = FNK.now();
 	static VERSION:string = "0.1.0"; // TODO: get from package.json?
+	static USE_PERF:boolean = (typeof performance !== 'undefined'); 
 
 	static getTimer():number {
-		return new Date().valueOf() - FNK.TIME_STARTED;
+		return FNK.now() - FNK.TIME_STARTED;
+	}
+	
+	static now():number {
+		return FNK.USE_PERF ? performance.now() : (new Date()).getTime();
 	}
 }
 
