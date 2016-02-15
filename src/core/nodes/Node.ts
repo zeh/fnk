@@ -126,9 +126,9 @@ export default class Node {
 		// Extend
 	}
 
-	protected setDescription(description:string[]) {
+	protected setDescription(captions:string[]) {
 		// Set the description (must be an array)
-		this.captions = description;
+		this.captions = captions;
 		this.onChangedCaption.dispatch();
 	}
 
