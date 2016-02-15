@@ -26,7 +26,6 @@ CORE
 * Clean up logs, FNK.ts
 * Use generics for connectors (data types need to be overhauled)
 * Add proper dispose() to nodes
-* Implement change booleans, caches, signals?
 * Nodes
   * Everything
   * Web Socket
