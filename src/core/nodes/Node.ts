@@ -1,4 +1,5 @@
 import Patch from './../patch/Patch';
+import Connector from './../connectors/Connector';
 import ConnectorList from './../connectors/ConnectorList';
 import SimpleSignal from './../signals/SimpleSignal';
 import CategoryTypes from './../data/CategoryTypes';
@@ -27,8 +28,9 @@ export default class Node {
 	public outputConnectors:ConnectorList;
 	public parameters:ConnectorList;
 	
-	public changeContentDescriptionSignal:SimpleSignal<() => void>;
-	public changeAnyOutputSignal:SimpleSignal<() => void>;
+	public onChangedCaption:SimpleSignal<(node:Node) => void>;
+	public onChangedValue:SimpleSignal<(node:Node) => void>;
+	public onChangedOutputConnector:SimpleSignal<(node:Node, connectorId:string) => void>;
 
 	
 	// ================================================================================================================
@@ -59,8 +61,8 @@ export default class Node {
 		if (this.alwaysProcess || this.inputConnectors.getHasChangedAny() || this.needsProcess) {
 			// Actual processing
 			this.innerProcess();
+			this.dispatchValueChanges();
 			this.resetChangeFlags();
-			this.changeAnyOutputSignal.dispatch();
 		}
 	}
 
@@ -126,7 +128,7 @@ export default class Node {
 	protected setDescription(description:string[]) {
 		// Set the description (must be an array)
 		this.captions = description;
-		this.changeContentDescriptionSignal.dispatch();
+		this.onChangedCaption.dispatch();
 	}
 
 
@@ -135,14 +137,31 @@ export default class Node {
 
 	private createSignals() {
 		// Create signals for event-like dispatching
-		this.changeContentDescriptionSignal = new SimpleSignal<() => void>();
-		this.changeAnyOutputSignal = new SimpleSignal<() => void>();
+		this.onChangedCaption = new SimpleSignal<(node:Node) => void>();
+		this.onChangedValue = new SimpleSignal<(node:Node) => void>();
+		this.onChangedOutputConnector = new SimpleSignal<(node:Node, connectorId:string) => void>();
+	}
+	
+	private dispatchValueChanges() {
+		this.dispatchChange();
+
+		let connector:Connector;
+		for (let i = 0; i < this.outputConnectors.length; i++) {
+			connector = this.outputConnectors.getAt(i); 
+			if (this.alwaysProcess || connector.hasChanged) {
+				this.onChangedOutputConnector.dispatch(this, connector.id);
+			}
+		}
+	}
+	
+	private dispatchChange() {
+		this.onChangedValue.dispatch(this);
 	}
 
 	private destroySignals() {
-		// Create signals for event-like dispatching
-		this.changeContentDescriptionSignal = undefined;
-		this.changeAnyOutputSignal = undefined;
+		this.onChangedCaption = null;
+		this.onChangedValue = null;
+		this.onChangedOutputConnector = null;
 	}
 	
 }
