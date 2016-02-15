@@ -3,6 +3,7 @@ import Connector from './../connectors/Connector';
 import ConnectorList from './../connectors/ConnectorList';
 import SimpleSignal from './../signals/SimpleSignal';
 import CategoryTypes from './../data/CategoryTypes';
+import DataTypes from './../data/DataTypes';
 
 /**
  * @author zeh fernando
