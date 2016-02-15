@@ -30,6 +30,7 @@ export default class Patch {
 	public addNode(node:Node) {
 		this.nodes.push(node);
 		node.patch = this;
+		node.onChangedOutputConnector.add(this.onNodeOutputConnectorChanged.bind(this));
 	}
 	
 	public removeNode(node:Node) {
@@ -37,6 +38,7 @@ export default class Patch {
 		if (idx > -1) {
 			this.nodes.splice(idx, 1);
 			node.patch = undefined;
+			node.onChangedOutputConnector.remove(this.onNodeOutputConnectorChanged.bind(this));
 		}
 	}
 
@@ -65,26 +67,28 @@ export default class Patch {
 		
 		// Starts a node cycle
 		i = 0;
-		let cycles = 0; // TODO: sanity check; remove this
+		let cycles = 0; // TODO: sanity check; remove this later?
 		while (i < this.nodes.length && cycles < 100) {
-			console.log("  Processing node " + i + "/" + this.nodes.length + ": " + this.nodes[i] + " (" + cycles + " cycles done so far)");
+			//console.log("  Processing node " + i + "/" + this.nodes.length + ": " + this.nodes[i] + " (" + cycles + " cycles done so far)");
 
 			cycles++;
 
 			// Tries to process a given node
 			tNode = this.nodes[i];
 
+			// First, find out whether this node needs to be processed or not
 			canProcess = true;
-
 			for (j = 0; j < this.links.length; j++) {
 				// TODO: optimize this with a dictionary lookup for nodes -> links?
 				if (this.links[j].outputNode == tNode && this.nodes.indexOf(this.links[j].inputNode) > i) {
+					// A link is connecting on output of a node that comes LATER in the node list to an input in this node
 					if (this.links[j].isDelayed) {
+						// Delayed, it's alright
 						if (this.links[j].needsOutputting) {
-							console.log("    Processing delayed link");
 							this.links[j].doOutput();
 						}
 					} else {
+						// Not delayed, invalid; will sort list
 						canProcess = false;
 						break;
 					}
@@ -93,18 +97,8 @@ export default class Patch {
 			
 			if (canProcess) {
 				// Can process, do it and continue					
-				// Process all related links first
 				//console.log("    Can process");
-				// TODO - only process nodes that need processing? Because the events have been removed from the actionscript version, it's brute-forcing all updates
-				for (j = 0; j < this.links.length; j++) {
-					if (this.links[j].outputNode == tNode) {
-						//console.log("      Processing input link " + j);
-						this.links[j].process();
-					}
-				}
-
 				tNode.process();
-				
 				i++;
 			} else {
 				// Can't process, move to end of list
@@ -133,4 +127,17 @@ export default class Patch {
 		}
 		return false;
 	}
+	
+	// ================================================================================================================
+	// SIGNAL INTERFACE -----------------------------------------------------------------------------------------------
+
+	private onNodeOutputConnectorChanged(node:Node, connectorId:string) {
+		// TODO: optimize this with a dictionary lookup for nodes -> links?
+		for (let i = 0; i < this.links.length; i++) {
+			if (this.links[i].inputNode == node && this.links[i].inputConnectorId == connectorId) {
+				this.links[i].process();
+			}
+		}
+	}
+
 }
