@@ -2,13 +2,19 @@
 	"compilerOptions": {
 		"target": "es5",
 		"module": "commonjs",
+		"moduleResolution": "node",
+		"isolatedModules": false,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
 		"declaration": false,
 		"noImplicitAny": true,
 		"removeComments": true,
+		"noLib": false,
 		"preserveConstEnums": true,
 		"sourceMap": true,
 		"outDir": "./build",
-		"newLine": "LF"
+		"newLine": "LF",
+		"suppressImplicitAnyIndexErrors": false
 	},
 	"files": [
 		"./src/index.ts"
