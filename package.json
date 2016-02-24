@@ -29,10 +29,8 @@
   "homepage": "https://github.com/zeh/fnk#readme",
   "devDependencies": {
     "typescript": "^1.8.0",
-    "webpack": "^1.12.13"
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
-    "ts-loader": "^0.8.1"
   }
 }
