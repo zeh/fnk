@@ -1,12 +1,12 @@
-import MultipleInputNode from './MultipleInputNode'
-import Node from './../../core/nodes/Node'
+import MultipleInputNode from './MultipleInputNode';
+import Node from './../../core/nodes/Node';
 import Connector from './../../core/connectors/Connector';
 
 /**
  * @author zeh fernando
  */
 export default class OperationNode extends MultipleInputNode {
-	
+
 	// ================================================================================================================
 	// CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 
@@ -17,18 +17,18 @@ export default class OperationNode extends MultipleInputNode {
 
 	// ================================================================================================================
 	// EXTENSIBLE INTERFACE -------------------------------------------------------------------------------------------
-	
+
 	protected setInitialData() {
 		// Extend
 		super.setInitialData();
 	}
-	
+
 	protected populateConnectors() {
 		super.populateConnectors();
-		
+
 		this.outputConnectors.add(new Connector(this.dataType, "Output", Node.CONNECTOR_ID_OUTPUT, true, true));
 	}
-	
+
 	protected innerProcess() {
 		let i:number;
 		let numItems = 0;
@@ -41,7 +41,7 @@ export default class OperationNode extends MultipleInputNode {
 		}
 		this.outputConnectors.get(Node.CONNECTOR_ID_OUTPUT).setValue(ga, this.dataType);
 	}
-	
+
 	protected getProcessedInputs(position:number):any {
 		return position;
 	}

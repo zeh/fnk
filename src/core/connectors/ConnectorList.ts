@@ -9,7 +9,7 @@ export default class ConnectorList {
 	private connectors:{[key:string]:Connector} = {};
 	private ids:string[] = [];
 
-	
+
 	// ================================================================================================================
 	// CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ export default class ConnectorList {
 
 	// ================================================================================================================
 	// PUBLIC INTERFACE -----------------------------------------------------------------------------------------------
-	
+
 	public add(connector:Connector, value:any[] = null) {
 		this.addAt(this.ids.length, connector, value);
 	}
@@ -39,7 +39,7 @@ export default class ConnectorList {
 	public getAt(position:number) {
 		return this.connectors[this.ids[position]];
 	}
-	
+
 	public getIdAt(position:number):string {
 		return this.ids[position];
 	}
@@ -54,7 +54,7 @@ export default class ConnectorList {
 	}
 
 	public removeAt(position:number) {
-		var id = this.ids[position];
+		let id = this.ids[position];
 		this.ids.splice(position, 1);
 		delete this.connectors[id];
 	}

@@ -19,7 +19,12 @@ export default class Connector {
 	// ================================================================================================================
 	// CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 
-	constructor(dataType:DataTypes, description:string, id:string, allowsArray:boolean = true, allowsMultipleOutputs:boolean = false, allowAnyDataType:boolean = false) {
+	constructor(dataType:DataTypes,
+				description:string,
+				id:string,
+				allowsArray = true,
+				allowsMultipleOutputs = false,
+				allowAnyDataType = false) {
 		// TODO:localization: default connector description
 		this.dataType = dataType;
 		this.anyDataType = allowAnyDataType;
@@ -34,7 +39,7 @@ export default class Connector {
 
 	// ================================================================================================================
 	// PUBLIC INTERFACE -----------------------------------------------------------------------------------------------
-	
+
 	public resetChangeFlag() {
 		// Marks this connector's values as not changed
 		this.hasChanged = false;
@@ -74,5 +79,5 @@ export default class Connector {
 	// ================================================================================================================
 	// PRIVATE INTERFACE ----------------------------------------------------------------------------------------------
 
-	
+
 }

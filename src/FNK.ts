@@ -1,13 +1,13 @@
 export default class FNK {
-	static TIME_STARTED:number = FNK.now();
-	static VERSION:string = "0.1.0"; // TODO: get from package.json?
-	static USE_PERF:boolean = (typeof performance !== 'undefined'); 
+	public static TIME_STARTED:number = FNK.now();
+	public static VERSION:string = "0.1.0"; // TODO: get from package.json?
+	public static USE_PERF:boolean = (typeof performance !== 'undefined');
 
-	static getTimer():number {
+	public static getTimer():number {
 		return FNK.now() - FNK.TIME_STARTED;
 	}
-	
-	static now():number {
+
+	public static now():number {
 		return FNK.USE_PERF ? performance.now() : (new Date()).getTime();
 	}
 }
@@ -16,7 +16,7 @@ export default class FNK {
 
 
 FNK.getFormattedTime = function() {
-	return "[" + ("00000000" + FNK.getTimer()).substr(-6, 6) + "] " 
+	return "[" + ("00000000" + FNK.getTimer()).substr(-6, 6) + "] "
 };
 
 FNK.log = function(__message) {

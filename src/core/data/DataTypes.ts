@@ -3,31 +3,19 @@
  */
 export default class DataTypes {
 
-	// Pseudo-enum types	
+	// Pseudo-enum types
 	public static Number:DataTypes;
 	public static String:DataTypes;
 	public static Color:DataTypes;
 	// Graphic, Image, Filter, ...
 	public static None:DataTypes;
-	
+
 	// Properties
 	public static description:string = "";
 	public static canSerialize:boolean = false;
 	public static canEdit:boolean = true;
 
 
-	// ================================================================================================================
-	// PUBLIC INTERFACE -----------------------------------------------------------------------------------------------
-	
-	public getDefaultValue():any {
-		return null;
-	}
-	
-	public serialize():string {
-		return "";
-	}
-
-	
 	// ================================================================================================================
 	// STATIC INTERFACE -----------------------------------------------------------------------------------------------
 
@@ -43,34 +31,34 @@ export default class DataTypes {
 	public static convertData(value:any, fromType:DataTypes, toType:DataTypes):any {
 		// Converts one item of data from one type to the other
 		let tempN:number;
-		if (fromType == toType) {
+		if (fromType === toType) {
 			// Same type, no need for conversion
 			return value;
 		} else {
 			// TODO: use the DataType classes' own functions for conversion?
 			// Different types
-			if (fromType == DataTypes.String) {
+			if (fromType === DataTypes.String) {
 				// From string...
-				if (toType == DataTypes.Number || toType == DataTypes.Color) {
+				if (toType === DataTypes.Number || toType === DataTypes.Color) {
 					// ...to number
 					tempN = parseFloat(String(value));
 					if (isNaN(tempN)) tempN = 0;
 					return tempN;
-				} else if (toType == DataTypes.Color) {
+				} else if (toType === DataTypes.Color) {
 					// ...to color
 					tempN = parseFloat(String(value));
 					if (isNaN(tempN)) tempN = 0;
 					return tempN;
 				}
-			} else if (fromType == DataTypes.Number || fromType == DataTypes.Color) {
+			} else if (fromType === DataTypes.Number || fromType === DataTypes.Color) {
 				// From number...
-				if (toType == DataTypes.String) {
+				if (toType === DataTypes.String) {
 					// ...to string
 					return Number(value).toString(10);
 				}
 			}
 		}
-			
+
 		//FNK.error("Undefined item type conversion: trying to convert [" + __value + "] from " + __fromType + " to " + __toType);
 	}
 
@@ -85,6 +73,19 @@ export default class DataTypes {
 		// Whether a number is bool true or false
 		return value >= 1;
 	}
+
+
+	// ================================================================================================================
+	// PUBLIC INTERFACE -----------------------------------------------------------------------------------------------
+
+	public getDefaultValue():any {
+		return null;
+	}
+
+	public serialize():string {
+		return "";
+	}
+
 }
 
 
@@ -118,11 +119,11 @@ public deSerialize(__value, __toType) {
 public getTooltipText(__description, __value, __dataType) {
 	// Based on a data type, get the tooltip string
 	var txt = "";
-	txt += __description + " (" + __dataType + "): "; 
+	txt += __description + " (" + __dataType + "): ";
 	if (canSerialize(__dataType)) {
 		txt += convertData(__value[0], __dataType, DataType.STRING);
 	} else {
-		txt += (Boolean(__value[0]) ? "[Object]": "[Null]");  
+		txt += (Boolean(__value[0]) ? "[Object]": "[Null]");
 	}
 	if (__value.length > 1) {
 		txt += " [" + __value.length+" items]";
@@ -146,7 +147,7 @@ class DataTypeString extends DataTypes {
 	public static description:string = "String";
 	public static canSerialize:boolean = true;
 	public static canEdit:boolean = true;
-	
+
 	public getDefaultValue():string {
 		return "";
 	}
@@ -173,7 +174,7 @@ class DataTypeFilter extends DataType {
 
 export class DataTypeNone extends DataTypes {
 	public static description:string = "None";
-	
+
 	public getDefaultValue():any {
 		return null;
 	}

@@ -1,4 +1,4 @@
-import IONode from './../IONode'
+import IONode from './../IONode';
 import DataTypes from './../../../core/data/DataTypes';
 import CategoryTypes from './../../../core/data/CategoryTypes';
 
@@ -6,7 +6,7 @@ import CategoryTypes from './../../../core/data/CategoryTypes';
  * @author zeh fernando
  */
 export default class NumberIONode extends IONode {
-	
+
 	// ================================================================================================================
 	// CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ export default class NumberIONode extends IONode {
 
 	// ================================================================================================================
 	// EXTENSIBLE INTERFACE -------------------------------------------------------------------------------------------
-	
+
 	protected setInitialData() {
 		// Extend
 		super.setInitialData();
