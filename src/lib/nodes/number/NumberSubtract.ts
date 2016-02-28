@@ -1,4 +1,4 @@
-import OperationNode from './../OperationNode'
+import OperationNode from './../OperationNode';
 import DataTypes from './../../../core/data/DataTypes';
 import CategoryTypes from './../../../core/data/CategoryTypes';
 
@@ -6,7 +6,7 @@ import CategoryTypes from './../../../core/data/CategoryTypes';
  * @author zeh fernando
  */
 export default class NumberSubtract extends OperationNode {
-	
+
 	// ================================================================================================================
 	// CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ export default class NumberSubtract extends OperationNode {
 
 	// ================================================================================================================
 	// EXTENSIBLE INTERFACE -------------------------------------------------------------------------------------------
-	
+
 	protected setInitialData() {
 		// Extend
 		super.setInitialData();
@@ -25,7 +25,7 @@ export default class NumberSubtract extends OperationNode {
 		this.dataType = DataTypes.Number;
 		this.categoryType = CategoryTypes.Number;
 	}
-	
+
 	protected getProcessedInputs(position:number):any {
 		let total = Number(this.inputConnectors.getAt(0).getValueAt(position));
 		for (let i = 1; i < this.inputConnectors.length; i++) {

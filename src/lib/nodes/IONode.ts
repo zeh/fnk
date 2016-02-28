@@ -1,4 +1,4 @@
-import Node from './../../core/nodes/Node'
+import Node from './../../core/nodes/Node';
 import DataTypes from './../../core/data/DataTypes';
 import Connector from './../../core/connectors/Connector';
 
@@ -6,7 +6,7 @@ import Connector from './../../core/connectors/Connector';
  * @author zeh fernando
  */
 export default class IONode extends Node {
-	
+
 	// Properties
 	protected dataType:DataTypes;
 
@@ -21,17 +21,17 @@ export default class IONode extends Node {
 
 	// ================================================================================================================
 	// EXTENSIBLE INTERFACE -------------------------------------------------------------------------------------------
-	
+
 	protected setInitialData() {
 		// Extend
 		super.setInitialData();
 		this.dataType = DataTypes.None;
 	}
-	
+
 	protected createParameters() {
 		super.createParameters();
 	}
-	
+
 	protected populateParameters() {
 		super.populateParameters();
 	}
@@ -42,7 +42,7 @@ export default class IONode extends Node {
 
 	protected populateConnectors() {
 		super.populateConnectors();
-		
+
 		// Actually populate the connector list with the expected connectors
 		this.inputConnectors.add(new Connector(this.dataType, "Input", Node.CONNECTOR_ID_INPUT));
 		this.outputConnectors.add(new Connector(this.dataType, "Output", Node.CONNECTOR_ID_OUTPUT, true, true));
@@ -101,7 +101,7 @@ public function getAdditionalParameters():Array {
 // ================================================================================================================
 // GENERIC interface ----------------------------------------------------------------------------------------------
 
-//FNK.IONode.prototype.getContentDescription = function() {
-//	// Returns a description of the content it holds
-//	return this.containedValue;
-//};
+// FNK.IONode.prototype.getContentDescription = function() {
+// 	// Returns a description of the content it holds
+// 	return this.containedValue;
+// };
