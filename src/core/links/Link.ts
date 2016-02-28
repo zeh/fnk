@@ -11,18 +11,20 @@ export default class Link {
 
 	public outputNode:Node;
 	public outputConnectorId:string;
-	
+
 	public isDelayed:boolean = false;
 	public needsOutputting:boolean = false;
-	
+
+	protected previousValue:any[];
+
 
 	// ================================================================================================================
 	// CONSTRUCTOR ----------------------------------------------------------------------------------------------------
 
 	constructor() {
 	}
-	
-	
+
+
 	// ================================================================================================================
 	// PUBLIC INTERFACE -----------------------------------------------------------------------------------------------
 
@@ -37,12 +39,14 @@ export default class Link {
 	}
 
 	public process() {
+		let value = this.inputNode.getOutputConnectors().get(this.inputConnectorId).getValue();
 		if (!this.isDelayed) {
-			this.doOutput();
+			let vDataType = this.inputNode.getOutputConnectors().get(this.inputConnectorId).dataType;
+			//console.log("      Processing normal link");
+			this.outputNode.getInputConnectors().get(this.outputConnectorId).setValue(value, vDataType);
 		} else {
+			if (this.needsOutputting) this.doOutput();
 			//console.warn("Is Delayed! Needs output = "+this.needsOutputting);
-			// This is not needed?? Because the patch does it itself...
-			//if (this.needsOutputting) this.doOutput();
 			// TODO: SPECIAL CASE for bitmaps - fix this?
 			/*
 			if (inputNode.getOutputType(this.inputConnectorId) == DataType.IMAGE) {
@@ -66,23 +70,22 @@ export default class Link {
 				previousValue = inputNode.getOutputValue(this.inputConnectorId);
 			}
 			*/
-			//this.previousValue = this.inputNode.getOutputValue(this.inputConnectorId);
+			this.previousValue = value;
 			this.needsOutputting = true;
-			// TODO: deep copy instead? 
 		}
 	}
 
-
 	public doOutput() {
-		let vValue = this.inputNode.getOutputConnectors().get(this.inputConnectorId).getValue();
 		let vDataType = this.inputNode.getOutputConnectors().get(this.inputConnectorId).dataType;
 
 		this.needsOutputting = false;
 		//console.log("==> Getting for connector of id " + this.outputConnectorId);
-		this.outputNode.getInputConnectors().get(this.outputConnectorId).setValue(vValue, vDataType);
+		//console.log("      Processing delayed link");
+		this.outputNode.getInputConnectors().get(this.outputConnectorId).setValue(this.previousValue, vDataType);
 	}
 
 	public dispose() {
+		this.previousValue = null;
 		this.inputNode = null;
 		this.outputNode = null;
 		//dispatchEvent(new LinkEvent(LinkEvent.DISPOSE, this));

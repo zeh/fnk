@@ -1,0 +1,13 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "editor.insertSpaces": false,
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "src/**/*.js": true,
+        "test/**/*.js": true
+    },
+
+    "files.trimTrailingWhitespace": true
+}

@@ -1,11 +1,11 @@
 /**
  * @author zeh fernando
  */
+import "babel-polyfill";
 
-import FNK from './FNK'
+import FNK from './FNK';
 import Patch from './core/patch/Patch';
 import Link from './core/links/Link';
-import Node from './core/nodes/Node';
 import DataTypes from './core/data/DataTypes';
 
 import NumberIONode from './lib/nodes/number/NumberIONode';
@@ -147,32 +147,34 @@ function processAndReport() {
 	console.log("==== Node add:      " + snode + " = " + snode.getOutputConnectors().getConnectorAt(0).getValue());
 	console.log("==== Node d:        " + noded + " = " + noded.getOutputConnectors().getConnectorAt(0).getValue());
 	*/
-	
+
+	/* tslint:disable:max-line-length */
 	console.log(".-----.      .-----.                                                                    ");
-	console.log("|  "+nodea.getOutputConnectors().getAt(0).getValue()+"  |      |  "+nodeb.getOutputConnectors().getAt(0).getValue()+"  |  (NumberIONodes)                                                   ");
+	console.log("|  " + nodea.getOutputConnectors().getAt(0).getValue() + "  |      |  " + nodeb.getOutputConnectors().getAt(0).getValue() + "  |  (NumberIONodes)                                                   ");
 	console.log("'--.--'      '--.--'                                                                    ");
 	console.log("   |            |                                                                       ");
 	console.log("   '-----. .----'                                                                       ");
 	console.log("       .-'-'-.                                                                          ");
 	console.log("       |  -  | (NumberSubtract)                                                         ");
 	console.log("       '--.--'                                                                          ");
-	console.log("          | "+pnode.getOutputConnectors().getAt(0).getValue()+"                                                                             ");
+	console.log("          | " + pnode.getOutputConnectors().getAt(0).getValue() + "                                                                             ");
 	console.log("          |            .------------------------.                                       ");
 	console.log("       .--'--.      .--'--.                     |                                       ");
-	console.log("       |  "+resultnode.getOutputConnectors().getAt(0).getValue()+"  |      |  "+nodec.getOutputConnectors().getAt(0).getValue()+"  | (NumberIONodes)     |                                       ");
+	console.log("       |  " + resultnode.getOutputConnectors().getAt(0).getValue() + "  |      |  " + nodec.getOutputConnectors().getAt(0).getValue() + "  | (NumberIONodes)     |                                       ");
 	console.log("       '--.--'      '--.--'                     | --> This link is delayed              ");
 	console.log("          |            |                        |                                       ");
 	console.log("          '-----. .----'                        |                                       ");
 	console.log("              .-'-'-.                           |                                       ");
 	console.log("              |  +  | (NumberAdd)               |                                       ");
 	console.log("              '--.--'                           |                                       ");
-	console.log("                 | "+snode.getOutputConnectors().getAt(0).getValue()+"                            |                                       ");
+	console.log("                 | " + snode.getOutputConnectors().getAt(0).getValue() + "                            |                                       ");
 	console.log("                 |                              |                                       ");
 	console.log("              .--'--.                           |                                       ");
-	console.log("              |  "+noded.getOutputConnectors().getAt(0).getValue()+"  | (NumberIONode)            |                                       ");
+	console.log("              |  " + noded.getOutputConnectors().getAt(0).getValue() + "  | (NumberIONode)            |                                       ");
 	console.log("              '-----'                           |                                       ");
 	console.log("                 |                              |                                       ");
 	console.log("                 '------------------------------'                                       ");
+	/* tslint:enable */
 };
 
 processAndReport();
